@@ -15,15 +15,10 @@ reserved = {
 }
 
 tokens = [
-    'ADD',
-    'SUB',
-    'MUL',
-    'DIV',
     'DOTADD',
     'DOTSUB',
     'DOTMUL',
     'DOTDIV',
-    'ASSIGN',
     'ADDASSIGN',
     'SUBASSIGN',
     'MULASSIGN',
@@ -34,16 +29,6 @@ tokens = [
     'LE',
     'NE',
     'EQ',
-    'LPAREN',
-    'RPAREN',
-    'LBRACK',
-    'RBRACK',
-    'LCURLY',
-    'RCURLY',
-    'COMMA',
-    'COLON',
-    "APOST",
-    'SEMIC',
     'ID',
     'INTNUM',
     'FLOATNUM',
@@ -51,26 +36,12 @@ tokens = [
     'COMMENT'
 ] + list(reserved.values())
 
+literals = r'+-/*;:\'",()[]{}='
 
-t_ADD = r'\+'
-t_SUB = r'-'
-t_MUL = r'\*'
-t_DIV = r'/'
-t_LPAREN = r'\('
-t_RPAREN = r'\)'
-t_LBRACK = r'\['
-t_RBRACK = r'\]'
-t_LCURLY = r'{'
-t_RCURLY = r'}'
-t_COMMA = r','
-t_COLON = r':'
-t_APOST = r"'"
-t_SEMIC = r';'
 t_DOTADD = r'\.\+'
 t_DOTSUB = r'\.-'
 t_DOTMUL = r'\.\*'
 t_DOTDIV = r'\./'
-t_ASSIGN = r'='
 t_ADDASSIGN = r'\+='
 t_SUBASSIGN = r'-='
 t_MULASSIGN = r'\*='
@@ -84,13 +55,13 @@ t_EQ = r'=='
 
 
 def t_FLOATNUM(t):
-    r'(\d+\.\d*)|(\d*\.\d+)'
+    r'[+-]?(\d+\.\d*)|(\d*\.\d+)'
     t.value = float(t.value)
     return t
 
 
 def t_INTNUM(t):
-    r'\d+'
+    r'[+-]?\d+'
     t.value = int(t.value)
     return t
 
